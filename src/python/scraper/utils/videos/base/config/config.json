@@ -1,0 +1,10 @@
+{
+    "base_url": "https://www.xvideos.com",
+    "endpoints": {
+      "dashboard": "/verified/videos",
+      "fresh": "/",
+      "search": "/",
+      "verified": "/verified/videos"
+    }
+  }
+  

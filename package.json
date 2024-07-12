@@ -1,0 +1,37 @@
+{
+  "name": "@osint/xvideos",
+  "version": "1.0.0",
+  "description": "powerful xvideos wrapper based on python for typescript projects",
+  "main": "/dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OSintt/xvideos.git"
+  },
+  "scripts": {
+    "publish": "npm publish",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "crawler",
+    "porn",
+    "spider",
+    "scrapper",
+    "api",
+    "xvideos",
+    "api",
+    "library"
+  ],
+  "author": "OSintt",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.10",
+    "chai": "^5.1.1",
+    "hest": "^1.0.5",
+    "mocha": "^10.6.0",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3"
+  }
+}
