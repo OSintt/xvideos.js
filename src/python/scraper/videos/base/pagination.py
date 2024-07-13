@@ -1,4 +1,4 @@
-from pagination_function import has_next_function, has_previous_function, next_function, previous_function, refresh_function
+from .pagination_function import has_next_function, has_previous_function, next_function, previous_function, refresh_function
 
 def create_has_next_function(pagination):
     page, pages = pagination['page'], pagination['pages']

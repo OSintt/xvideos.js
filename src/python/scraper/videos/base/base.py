@@ -10,5 +10,6 @@ class BaseScraper():
     def scrape(self, endpoint: str, params: dict) -> str:
         pass
     def get_soup(self, endpoint: str, params: dict) -> BeautifulSoup:
-        response = requests.get(f"{self.base_url}/{endpoint}", params=params)
+        response = requests.get(f"{self.base_url}{endpoint}", params=params)
+        print(response.url)
         return BeautifulSoup(response.text, 'html.parser')

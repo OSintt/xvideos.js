@@ -1,5 +1,9 @@
-from utils.videos.search import SearchScraper
+from videos.search import SearchScraper
+from videos.fresh import FreshScraper
 
-scraper = SearchScraper()
-result = scraper.search(page=1, k="pene", durf='1-3min')
-print(result)
+scraper = FreshScraper()
+res = scraper.fresh()
+
+#searcher = SearchScraper()
+#res = searcher.search(k="tetas")
+print(res['pagination'])
