@@ -1,12 +1,5 @@
 from bs4 import BeautifulSoup
 import re
-from .pagination import (
-    create_has_next_function,
-    create_has_previous_function,
-    create_next_function,
-    create_previous_function,
-    create_refresh_function,
-)
 from .config.config import config
 
 def get_videos(soup):
@@ -22,53 +15,53 @@ def get_pages(soup, is_fresh):
                 pages.add(page_number - 1)
             else:
                 pages.add(page_number)
-    # Procesa la última página
-    #print(soup.select('.pagination > ul > li > a'))
-    #soup.wait_for_element('.last-page')
-    last_page = soup.select_one('.last-page')
-    #print(soup.prettify())
-    print(last_page)  
+    last_page = soup.select_one('.last-page') 
     if last_page:
         text = last_page.text.strip()
-        print(f"Texto de last_page: {text}")
         if text.isdigit():
-            print("Last page number", page_number)
             last_page_number = int(text)
             if is_fresh:
                 pages.add(last_page_number - 1)
             else:
                 pages.add(last_page_number)
-    #else:
-        #print("No se encontró el elemento de la última página")
     return sorted(pages)
 
-def parse_response(page, data, load_module_function, is_fresh=False):
+def parse_response(page, data, is_fresh=False):
     soup = BeautifulSoup(data, 'html.parser')
     videos = get_videos(soup)
+    results_count = extract_results_count(soup, is_fresh)
+    pages = get_pages(soup, is_fresh)
+    last_page = pages[-1]
+    if not is_fresh:
+        if int(results_count) >= 4029:  
+            last_page = 149
+        else: 
+            last_page = int(results_count / 27) + 1
     pagination = {
         'page': page,
-        'pages': get_pages(soup, is_fresh)
+        'pages': pages,
+        'last_page': last_page
     }
-    results_count = extract_results_count(soup)
     return {
         'videos': videos,
         'pagination': pagination,
-        'refresh': create_refresh_function(pagination, load_module_function),
-        'has_next': create_has_next_function(pagination),
-        'next': create_next_function(pagination, load_module_function),
-        'has_previous': create_has_previous_function(pagination),
-        'previous': create_previous_function(pagination, load_module_function),
+        'has_next': page + 1,
+        'next': page < last_page,
+        'has_previous': page > min(pages),
+        'previous': page - 1,
         'results_count': results_count,
     }
 
-def extract_results_count(soup):
+def extract_results_count(soup, is_fresh=False):
     results_span = soup.select_one('h2.page-title .sub')
     results_count = "Unknown"
     if results_span:
         results_text = results_span.text.strip()
-        match = re.search(r'\((\d+)', results_text)
+        match = re.search(r'\(([\d.,]+)', results_text)
         if match:
-            results_count = int(match.group(1))
+            results_count = int(match.group(1).replace('.', '').replace(',', ''))
+    if is_fresh: 
+        results_count = 27 * 20000 
     return results_count
 
 def extract_title(video):

@@ -13,5 +13,5 @@ class SearchScraper(VideoScraper):
             'quality': quality
         }
         data = self.scrape('search', params)
-        return parse_response(page, data, self.scrape, is_fresh=False)
+        return parse_response(page, data, is_fresh=False)
 

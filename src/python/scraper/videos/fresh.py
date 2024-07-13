@@ -8,4 +8,4 @@ class FreshScraper(VideoScraper):
         else:
             endpoint = 'fresh_p'
         data = self.scrape(endpoint, {'page': page - 1} if page else None)
-        return parse_response(page, data, self.scrape, is_fresh=True)
+        return parse_response(page, data, is_fresh=True)
