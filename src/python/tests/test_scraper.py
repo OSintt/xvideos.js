@@ -1,5 +1,5 @@
 import pytest
-from scraper.xvideos import XVideos
+from src.xvideos import XVideos
 
 @pytest.fixture
 def scraper():
