@@ -1,9 +1,9 @@
-from .xvideos import XVideosScraper
+from .xvideos import XVideos
 def main():
-    scraper = XVideosScraper()
-    print(scraper.fresh(page=1)) 
-    print(scraper.search(page=1, k="example")) 
-    print(scraper.get_verified(page=1)) 
+    xvideos = XVideos()
+    print(xvideos.fresh(page=1)) 
+    print(xvideos.search(page=1, k="example")) 
+    print(xvideos.get_verified(page=1)) 
 
 if __name__ == "__main__":
     main()

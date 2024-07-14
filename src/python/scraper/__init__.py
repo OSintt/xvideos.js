@@ -1,2 +1,2 @@
-from .xvideos import XVideosScraper
+from .xvideos import XVideos
 from .main import main

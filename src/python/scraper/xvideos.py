@@ -11,7 +11,7 @@ def page_validator(func):
 
 SAFE_MAX_NUMBER_VERIFIED = 254
 SAFE_MAX_NUMBER_FRESH = 20000
-class XVideosScraper():
+class XVideos():
     def __init__(self):
         self.__fresh_scraper = FreshScraper()
         self.__search_scraper = SearchScraper()

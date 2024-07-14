@@ -1,9 +1,9 @@
 import pytest
-from scraper.xvideos import XVideosScraper
+from scraper.xvideos import XVideos
 
 @pytest.fixture
 def scraper():
-    return XVideosScraper()
+    return XVideos()
 
 def test_fresh(scraper):
     result = scraper.fresh(page=2)

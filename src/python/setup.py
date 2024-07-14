@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="xvideos.py",          
+    name="xvideos-py",          
     version="0.1.0",                 
     description="A powerful scraper for xvideos.com", 
     author="OSintt",              
