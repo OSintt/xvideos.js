@@ -2,7 +2,6 @@ from .base import VideoScraper, parse_response
 
 class VerifiedScraper(VideoScraper):
     def get_verified(self, page: int = 1, type="women") -> str:
-        page -= 1
         if type == "women":
             endpoint = "verified"
         elif type == "men":
@@ -13,5 +12,6 @@ class VerifiedScraper(VideoScraper):
             endpoint = f'verified_trans'
         else:
             raise ValueError("Endpoint must be either women, men, gay or trans")
+        if page <= 0: endpoint += '_p'
         data = self.scrape(endpoint, {'page': page} if page else None)
         return parse_response(page, data, is_fresh=True)

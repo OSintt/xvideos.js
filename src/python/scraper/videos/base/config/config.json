@@ -7,6 +7,10 @@
     "verified": "/verified/videos/{page}",
     "verified_men": "/verified-men/videos/{page}",
     "verified_gay": "/verified-gay/videos/{page}",
-    "verified_trans": "/verified-trans/videos/{page}"
+    "verified_trans": "/verified-trans/videos/{page}",
+    "verified_p": "/verified/videos",
+    "verified_men_p": "/verified-men/videos",
+    "verified_gay_p": "/verified-gay/videos",
+    "verified_trans_p": "/verified-trans/videos"
   }
 }

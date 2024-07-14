@@ -16,7 +16,8 @@ class Config:
         endpoint = self.endpoints.get(endpoint_name, '')
         if page is not None:
             return endpoint.format(page=page)
-        return endpoint
+        else:
+            return endpoint
 
 config = Config(os.path.join(os.path.dirname(__file__), 'config.json'))
 
