@@ -1,0 +1,55 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pytest
+.cache/
+
+# Mypy
+.mypy_cache/
+
+# Cython debug symbols
+cython_debug/
+
+# Environment variables
+*.env
+
+# System files
+.DS_Store
+Thumbs.db
+
+# PyCharm
+*.iml
+.idea/
+
+# VSCode
+.vscode/
+
+# Pyenv
+.python-version
+
+# Docker
+docker-compose.override.yml
+*.dockerfile
+
+# Logs
+*.log
