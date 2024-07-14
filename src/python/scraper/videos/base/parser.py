@@ -49,6 +49,7 @@ def parse_response(page, data, is_fresh=False):
     }
 
 def extract_results_count(soup, is_fresh=False):
+    if is_fresh: return 27 * 20000
     results_span = soup.select_one('h2.page-title .sub')
     if results_span:
         results_text = results_span.text.strip()
@@ -56,13 +57,9 @@ def extract_results_count(soup, is_fresh=False):
         if match:
             results_count = int(match.group(1).replace('.', '').replace(',', ''))
         else:
-            results_count = "Unknown"
+            raise ValueError("No results found")
     else:
-        results_count = "Unknown"
-    
-    if is_fresh:
-        results_count = 27 * 20000
-    
+        raise ValueError("No results found")
     return results_count
 
 def extract_title(video):

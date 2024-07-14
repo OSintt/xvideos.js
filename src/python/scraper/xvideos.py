@@ -1,4 +1,4 @@
-from videos import FreshScraper, SearchScraper, VerifiedScraper
+from .videos import FreshScraper, SearchScraper, VerifiedScraper
 
     
 def page_validator(func):
@@ -8,6 +8,9 @@ def page_validator(func):
         page -= 1
         return func(self, page, *args, **kwargs)
     return wrapper
+
+SAFE_MAX_NUMBER_VERIFIED = 254
+SAFE_MAX_NUMBER_FRESH = 20000
 class XVideosScraper():
     def __init__(self):
         self.__fresh_scraper = FreshScraper()
@@ -16,6 +19,7 @@ class XVideosScraper():
 
     @page_validator
     def fresh(self, page=1):
+        if page >= SAFE_MAX_NUMBER_FRESH: raise ValueError(f"Page parameter must be under {SAFE_MAX_NUMBER_FRESH}")
         return self.__fresh_scraper.fresh(page)
 
     @page_validator
@@ -24,6 +28,7 @@ class XVideosScraper():
 
     @page_validator
     def get_verified(self, page=1):
+        if page >= SAFE_MAX_NUMBER_VERIFIED: raise ValueError(f"Page parameter must be under {SAFE_MAX_NUMBER_VERIFIED}")
         return self.__verified_scraper.get_verified(page)
 
 
