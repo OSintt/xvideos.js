@@ -1,9 +1,6 @@
-from videos.search import SearchScraper
-from videos.fresh import FreshScraper
+from xvideos import XVideosScraper
 
-scraper = FreshScraper()
-res = scraper.fresh(page=5)
+scraper = XVideosScraper()
+res = scraper.fresh(page=4)
 
-#searcher = SearchScraper()
-#res = searcher.search(k="poronga")
-print(res)
+print(res['videos'][0])

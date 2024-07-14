@@ -1,8 +1,7 @@
-from .base.video_scraper import VideoScraper
-from .base.parser import parse_response
+from .base import VideoScraper, parse_response
 class SearchScraper(VideoScraper):
     def search(
-        self, page: int = 1, k: str = "", sort: str = "relevance", durf: str = "allduration", datef: str = "all", quality: str = "all"
+        self, page: int = 1, k: str = "", sort: str = "relevance", durf: str = "allduration", datef: str = "all", quality: str = "all", premium: bool = False
     ) -> str:
         params = {
             'p': page,
@@ -10,7 +9,8 @@ class SearchScraper(VideoScraper):
             'sort': sort,
             'durf': durf,
             'datef': datef,
-            'quality': quality
+            'quality': quality,
+            'premium': int(premium)
         }
         data = self.scrape('search', params)
         return parse_response(page, data, is_fresh=False)

@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import re
-from .config.config import config
+from .config import config
 
 def get_videos(soup):
     return [parse_video(video) for video in soup.select('#content > .mozaique > .thumb-block') if parse_video(video) is not None]
@@ -45,8 +45,8 @@ def parse_response(page, data, is_fresh=False):
     return {
         'videos': videos,
         'pagination': pagination,
-        'has_next': page + 1,
-        'next': page < last_page,
+        'has_next': page < last_page,
+        'next': page + 1,
         'has_previous': page > min(pages),
         'previous': page - 1,
         'results_count': results_count,

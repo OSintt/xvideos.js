@@ -1,5 +1,4 @@
-from .base.video_scraper import VideoScraper
-from .base.parser import parse_response
+from .base import VideoScraper, parse_response
 
 class FreshScraper(VideoScraper):
     def fresh(self, page: int = 1) -> str:

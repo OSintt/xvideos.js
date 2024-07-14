@@ -1,8 +1,7 @@
 from bs4 import BeautifulSoup;
 import requests
 from abc import ABC, abstractmethod
-from .config.config import config
-
+from .config import config
 class BaseScraper():
     def __init__(self):
         self.base_url = config.get_base_url()

@@ -1,10 +1,12 @@
 {
-    "base_url": "https://www.xvideos.com",
-    "endpoints": {
-      "fresh_p": "/new/{page}",
-      "fresh": "/",
-      "search": "/",
-      "verified": "verified/videos"
-    }
+  "base_url": "https://www.xvideos.com",
+  "endpoints": {
+    "fresh_p": "/new/{page}",
+    "fresh": "/",
+    "search": "/",
+    "verified": "/verified/videos/{page}",
+    "verified_men": "/verified-men/videos/{page}",
+    "verified_gay": "/verified-gay/videos/{page}",
+    "verified_trans": "/verified-trans/videos/{page}"
+  }
 }
-  

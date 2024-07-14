@@ -1,5 +1,5 @@
 from .base import BaseScraper
-from .config.config import config
+from .config import config
 
 class VideoScraper(BaseScraper):
     def scrape(self, endpoint_name: str, params: dict = None) -> str:
