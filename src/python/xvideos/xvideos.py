@@ -2,7 +2,7 @@ from .videos import FreshScraper, SearchScraper, VerifiedScraper
 
     
 def page_validator(func):
-    def wrapper(self, page, *args, **kwargs):
+    def wrapper(self, page=1, *args, **kwargs):
         if page <= 0:
             raise ValueError("Page must be an integer greater than 0")
         page -= 1

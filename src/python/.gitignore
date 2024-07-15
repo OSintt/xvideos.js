@@ -53,3 +53,11 @@ docker-compose.override.yml
 
 # Logs
 *.log
+
+# twine
+$HOME
+
+.pytest_cache
+.pypirc
+
+/test

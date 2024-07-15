@@ -1,10 +1,10 @@
 import pytest
-from src.xvideos import XVideos
+from xvideos.xvideos import XVideos
 
 @pytest.fixture
 def scraper():
     return XVideos()
-
+    
 def test_fresh(scraper):
     result = scraper.fresh(page=2)
     assert 'pagination' in result
@@ -45,5 +45,9 @@ def test_search_with_large_page(scraper):
 def test_get_verified_with_large_page(scraper):
     with pytest.raises(ValueError):
         scraper.get_verified(page=99999)
+        
+def test_search_without_page(scraper):
+    result = scraper.search(k="example", sort="relevance")
+    assert 'pagination' in result
 
 
