@@ -38,6 +38,7 @@ class Parser {
     });
     return videos;
   }
+
   private getPages($: cheerio.Root): number[] {
     const pages = new Set<number>();
     $(".pagination ul li a").each((_, element) => {
@@ -47,13 +48,9 @@ class Parser {
         pages.add(this.isFresh ? pageNumber - 1 : pageNumber);
       }
     });
-    const lastPage = $(".last-page").text().trim();
-    if (!isNaN(parseInt(lastPage))) {
-      const lastPageNumber = parseInt(lastPage);
-      pages.add(this.isFresh ? lastPageNumber - 1 : lastPageNumber);
-    }
     return Array.from(pages).sort((a, b) => a - b);
   }
+
   private extractResultsCount($: cheerio.Root): number {
     if (this.isFresh) return 27 * 20000;
     const resultsSpan = $("h2.page-title .sub");

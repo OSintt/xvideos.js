@@ -1,8 +1,7 @@
 import axios from "axios";
 import { load } from "cheerio";
-import { URL } from "url";
+import { URL, URLSearchParams } from "url";
 import config from "./config/config";
-
 abstract class BaseScraper {
   base_url: string;
 
@@ -14,10 +13,15 @@ abstract class BaseScraper {
     params: Record<string, any>,
   ): Promise<string>;
   async getSoup(endpoint: string, params: Record<string, any>): Promise<any> {
-    const fullUrl = new URL(endpoint, this.base_url).toString();
-    console.log(fullUrl);
-    const response = await axios.get(fullUrl, { params });
-    return load(response.data);
+    try {
+      params = new URLSearchParams(params);
+      let fullUrl = new URL(endpoint, this.base_url).toString();
+      fullUrl += '?'+params.toString();
+      const response = await axios.get(fullUrl);
+      return load(response.data).html();
+    } catch (err) {
+      console.log("Ocurrió un error", err);
+    }
   }
 }
 

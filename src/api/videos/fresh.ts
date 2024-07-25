@@ -12,6 +12,7 @@ class FreshScraper extends VideoScraper {
   async fresh(
     page: number,
   ): Promise<{ videos: Video[]; pagination: Pagination }> {
+    page -= 1;
     if (page == 0) {
       this.endpoint = "fresh";
     }
@@ -19,3 +20,5 @@ class FreshScraper extends VideoScraper {
     return this.parser.parseResponse(page, data);
   }
 }
+
+export default FreshScraper;

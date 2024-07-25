@@ -17,7 +17,7 @@ class SearchScraper extends VideoScraper {
     premium: Boolean = false,
   ): Promise<{ videos: Video[]; pagination: Pagination }> {
     const params = {
-      p: page,
+      p: page - 1,
       k: k,
       sort: sort,
       durf: durf,
