@@ -12,7 +12,7 @@ abstract class BaseScraper {
     endpoint: string,
     params: Record<string, any>,
   ): Promise<string>;
-  async getSoup(endpoint: string, params: Record<string, any>): Promise<any> {
+  async getSoup(endpoint: string, params: Record<string, any>): Promise<string> {
     try {
       params = new URLSearchParams(params);
       let fullUrl = new URL(endpoint, this.base_url).toString();
@@ -20,7 +20,7 @@ abstract class BaseScraper {
       const response = await axios.get(fullUrl);
       return load(response.data).html();
     } catch (err) {
-      throw new Error("Ocurrió un error " + err);
+      throw new Error("Unexpected error: " + err);
     }
   }
 }

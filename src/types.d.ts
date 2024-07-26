@@ -72,9 +72,21 @@ interface Model extends MainUploader {
 }
 
 type VerifiedType = "women" | "men" | "gay" | "trans";
-type SortType = "relevance" | "uploaddate" | "rating" | "length" | "views" | "random";
+type SortType =
+  | "relevance"
+  | "uploaddate"
+  | "rating"
+  | "length"
+  | "views"
+  | "random";
 type DatefType = "today" | "week" | "month" | "3month" | "6month" | "all";
-type DurfType = "1-3min" | "3-10min" | "10min_more" | "10-20min" | "20min_more" | "allduration";
+type DurfType =
+  | "1-3min"
+  | "3-10min"
+  | "10min_more"
+  | "10-20min"
+  | "20min_more"
+  | "allduration";
 type QualityType = "hd" | "1080P" | "all";
 
 interface SearchParams {
@@ -90,3 +102,5 @@ interface MoreSearchParams {
   quality?: QualityType;
   premium?: boolean;
 }
+
+type VideoScraperParams = string | number | MoreSearchParams | SearchParams
