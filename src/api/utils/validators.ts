@@ -1,5 +1,5 @@
 export function pageValidator(
-  target: any,
+  target: Function,
   propertyKey: string,
   descriptor: PropertyDescriptor,
 ) {
@@ -14,7 +14,7 @@ export function pageValidator(
 }
 
 export function urlValidator(
-  target: any,
+  target: Function,
   propertyKey: string,
   descriptor: PropertyDescriptor,
 ) {
@@ -23,9 +23,7 @@ export function urlValidator(
     /^https:\/\/(www\.)?xvideos\.com\/video\.[a-zA-Z0-9._-]+\/.+$/;
 
   descriptor.value = async function (url: string, ...args: any[]) {
-    if (!urlRegex.test(url)) {
-      throw new Error(`Invalid URL: ${url}`);
-    }
+    if (!urlRegex.test(url)) throw new Error(`Invalid URL: ${url}`);
     return originalMethod.apply(this, [url, ...args]);
   };
 }
