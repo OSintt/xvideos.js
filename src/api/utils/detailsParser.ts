@@ -10,6 +10,7 @@ interface PuppeteerConfig {
 
 class DetailsParser {
   private $: cheerio.Root;
+  private browser: Browser | undefined;
   private puppeteerConfig: PuppeteerConfig;
   constructor() {
     this.puppeteerConfig = {
@@ -20,10 +21,10 @@ class DetailsParser {
   }
 
   private async setup(url: string) {
-    const browser: Browser | undefined = await puppeteer.launch(
+    this.browser = await puppeteer.launch(
       this.puppeteerConfig,
     );
-    const page = await browser.newPage();
+    const page = await this.browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
     const html = await page.content();
     this.$ = cheerio.load(html);
@@ -144,6 +145,7 @@ class DetailsParser {
     const models = await this.getModels(this.$);
     const tags = await this.getTags(this.$);
     const mainUploader = await this.getMainUploader(this.$);
+    await this.browser.close();
     return {
       ...meta,
       url,

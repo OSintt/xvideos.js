@@ -14,7 +14,7 @@
     "start": "node dist/index.js",
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts",
-    "test": "jest --detectOpenHandles",
+    "test": "jest",
     "dev": "nodemon",
     "prepublishOnly": "npm run build && npm run lint && npm run test"
   },
