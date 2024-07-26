@@ -10,22 +10,18 @@ class SearchScraper extends VideoScraper {
   async search(
     k: string,
     page: number = 1,
-    sort: string = "relevance", 
-    durf: string = "allduration", 
-    datef: string = "all", 
-    quality: string = "all", 
-    premium: Boolean = false,
+    params: MoreSearchParams
   ): Promise<{ videos: Video[]; pagination: Pagination }> {
-    const params = {
-      p: page - 1,
+    const newParams = {
+      p: page,
       k: k,
-      sort: sort,
-      durf: durf,
-      datef: datef,
-      quality: quality,
-      premium: premium ? 1 : 0,
+      sort: params.sort,
+      durf: params.durf,
+      datef: params.datef,
+      quality: params.quality,
+      premium: params.premium ? 1 : 0,
     };
-    const data = await this.scrape("search", params);
+    const data = await this.scrape("search", newParams);
     return this.parser.parseResponse(page, data);
   }
 }

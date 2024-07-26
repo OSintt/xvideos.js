@@ -1,5 +1,4 @@
-.venv/
 dist/
 .vscode/
 node_modules/
-src/python/venv
+/video

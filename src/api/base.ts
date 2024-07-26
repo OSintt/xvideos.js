@@ -20,7 +20,7 @@ abstract class BaseScraper {
       const response = await axios.get(fullUrl);
       return load(response.data).html();
     } catch (err) {
-      console.log("Ocurrió un error", err);
+      throw new Error("Ocurrió un error " + err);
     }
   }
 }

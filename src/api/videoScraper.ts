@@ -6,7 +6,6 @@ abstract class VideoScraper extends BaseScraper {
     const page: number | null = params.page;
     const endpoint = config.getEndpoint(endpointName, page);
     if (!endpoint) throw new Error("Invalid endpoint " + endpointName);
-    console.log(endpoint);
     const soup = this.getSoup(endpoint, params);
     return soup;
   }

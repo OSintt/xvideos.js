@@ -9,10 +9,7 @@ class VerifiedScraper extends VideoScraper {
     this.parser = new Parser(isFresh);
     this.endpoint = "verified";
   }
-  async getVerified(type: string = "women", page: number = 1) {
-    const types = ["women", "men", "gay", "trans"];
-    page -= 1;
-    if (!types.includes(type)) throw new Error("Invalid type: " + type);
+  async getVerified(type: VerifiedType = "women", page: number = 1) {
     if (type !== "women") {
       this.endpoint += `_${type}`;
     }

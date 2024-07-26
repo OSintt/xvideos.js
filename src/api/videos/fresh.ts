@@ -7,12 +7,11 @@ class FreshScraper extends VideoScraper {
   constructor(isFresh: boolean = true) {
     super();
     this.parser = new Parser(isFresh);
-    this.endpoint = "p_fresh";
+    this.endpoint = "fresh_p";
   }
   async fresh(
     page: number,
   ): Promise<{ videos: Video[]; pagination: Pagination }> {
-    page -= 1;
     if (page == 0) {
       this.endpoint = "fresh";
     }
