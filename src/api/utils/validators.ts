@@ -1,5 +1,5 @@
 export function pageValidator(
-  target: Function,
+  target: object,
   propertyKey: string,
   descriptor: PropertyDescriptor,
 ) {
@@ -14,7 +14,7 @@ export function pageValidator(
 }
 
 export function urlValidator(
-  target: Function,
+  target: object,
   propertyKey: string,
   descriptor: PropertyDescriptor,
 ) {

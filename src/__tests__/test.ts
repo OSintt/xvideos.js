@@ -75,4 +75,4 @@ test("details with valid URL", async () => {
   expect(details).toHaveProperty("url");
   expect(details).toHaveProperty("views");
   expect(details).toHaveProperty("image");
-});
+}, 10 * 1000);
