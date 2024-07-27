@@ -2,8 +2,8 @@
   "name": "xvideos.js",
   "version": "1.0.0",
   "description": "powerful xvideos wrapper based on typescript",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",

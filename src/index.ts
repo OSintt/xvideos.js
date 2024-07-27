@@ -1,3 +1,3 @@
 import XVideos from "./xvideos";
-export default XVideos;
+export { XVideos };
 
