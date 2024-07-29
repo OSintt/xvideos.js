@@ -13,7 +13,7 @@ $ yarn add xvideos.js
 ## Usage
 
 ```javascript
-import { XVideos }from 'xvideos.js';
+import { XVideos } from 'xvideos.js';
 const xvideos = new XVideos();
 //-- Inside an async function --//
 
@@ -98,9 +98,6 @@ console.log(videos.hasNext()); // Outputs: true or false
 
 // Check if there is a previous page of results
 console.log(videos.hasPrevious()); // Outputs: true or false
-
-// Refresh the current page of results to get updated data
-const refreshedVideos = await videos.refresh();
 
 // Retrieve the next page of videos if available
 const nextVideos = await videos.next();
