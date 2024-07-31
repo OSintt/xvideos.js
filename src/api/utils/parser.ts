@@ -98,7 +98,7 @@ class Parser {
     };
   }
   private extractViews(video: cheerio.Cheerio): string {
-    let views = "Unknown";
+    const views = "Unknown";
     const metadata = video.find(".metadata");
     if (metadata.length) {
       const sprfluousSpans = metadata.find("span.sprfluous");
