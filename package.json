@@ -1,6 +1,6 @@
 {
   "name": "xvideos.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "powerful xvideos wrapper based on typescript",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
