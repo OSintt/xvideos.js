@@ -103,8 +103,8 @@ class Parser {
     if (metadata.length) {
       const sprfluousSpans = metadata.find("span.sprfluous");
       if (sprfluousSpans.length >= 2) {
-        const viewsText = sprfluousSpans.eq(0).next().text().trim();
-        if (viewsText) views = viewsText.split(" ")[0];
+        const viewsText = sprfluousSpans[0].next.data.trim();
+        return viewsText;
       }
     }
     return views;
@@ -126,7 +126,6 @@ class Parser {
         views,
       };
     } catch (e) {
-      console.error(`Error parsing video: ${(e as Error).message}`);
       return null;
     }
   }

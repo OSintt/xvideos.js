@@ -41,6 +41,7 @@ interface VideoDetails {
   title: string | undefined;
   url: string;
   duration: number | undefined;
+  description: string | undefined;
   image: string | undefined;
   views: string | undefined;
   videoType: string | undefined;

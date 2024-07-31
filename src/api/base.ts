@@ -12,11 +12,14 @@ abstract class BaseScraper {
     endpoint: string,
     params: Record<string, any>,
   ): Promise<string>;
-  async getSoup(endpoint: string, params: Record<string, any>): Promise<string> {
+  async getSoup(
+    endpoint: string,
+    params: Record<string, any>,
+  ): Promise<string> {
     try {
       params = new URLSearchParams(params);
       let fullUrl = new URL(endpoint, this.base_url).toString();
-      fullUrl += '?'+params.toString();
+      fullUrl += "?" + params.toString();
       const response = await axios.get(fullUrl);
       return load(response.data).html();
     } catch (err) {
