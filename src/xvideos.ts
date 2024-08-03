@@ -72,6 +72,10 @@ class XVideos {
   async downloadLow(url: string, filename: string): Promise<string> {
     return this.DetailsScraper.downloadLow(url, filename);
   }
+  @urlValidator
+  async downloadImage(url: string, filename: string): Promise<string> {
+    return this.DetailsScraper.downloadImage(url, filename);
+  }
 }
 
 export default XVideos;

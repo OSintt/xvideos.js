@@ -2,6 +2,7 @@ import cheerio from "cheerio";
 import puppeteer, { Browser } from "puppeteer";
 import fs from "fs";
 import axios from "axios";
+import path from "path";
 interface PuppeteerConfig {
   headless: boolean;
   slow_mo: number;
@@ -21,9 +22,7 @@ class DetailsParser {
   }
 
   private async setup(url: string) {
-    this.browser = await puppeteer.launch(
-      this.puppeteerConfig,
-    );
+    this.browser = await puppeteer.launch(this.puppeteerConfig);
     const page = await this.browser.newPage();
     await page.goto(url, { waitUntil: "networkidle2" });
     const html = await page.content();
@@ -160,13 +159,19 @@ class DetailsParser {
     };
   }
 
-  private extractFileUrl(scriptContent: string | null, pattern: RegExp): string | null {
+  private extractFileUrl(
+    scriptContent: string | null,
+    pattern: RegExp,
+  ): string | null {
     if (!scriptContent) return null;
     const match = scriptContent.match(pattern);
     return match ? match[1] : null;
   }
 
-  public async downloadVideo(url: string, filename: string): Promise<string | null> {
+  public async downloadVideo(
+    url: string,
+    filename: string,
+  ): Promise<string | null> {
     if (!filename.endsWith(".mp4")) filename += ".mp4";
     const directory = filename.substring(0, filename.lastIndexOf("/"));
     if (directory && !fs.existsSync(directory)) {
@@ -181,6 +186,34 @@ class DetailsParser {
         writer.on("error", reject);
       });
     } else {
+      return null;
+    }
+  }
+  public async downloadImage(
+    url: string,
+    filename: string,
+  ): Promise<string | null> {
+    if (!filename.endsWith(".jpg") && !filename.endsWith(".webp")) {
+      filename += ".jpg";
+    }
+    const directory = path.dirname(filename);
+    if (directory && !fs.existsSync(directory)) {
+      fs.mkdirSync(directory, { recursive: true });
+    }
+    try {
+      const response = await axios.get(url, { responseType: "stream" });
+      if (response.status === 200) {
+        return new Promise<string>((resolve, reject) => {
+          const writer = fs.createWriteStream(filename);
+          response.data.pipe(writer);
+          writer.on("finish", () => resolve(filename));
+          writer.on("error", reject);
+        });
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Error downloading image:", error);
       return null;
     }
   }

@@ -79,17 +79,29 @@ const previousVideos = await verifiedList.previous();
 
 ```javascript
 // Retrieve detailed information about a specific video using its URL
-const details = await xvideos.videos.details({ url: 'https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa' });
+const details = await xvideos.details('https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa');
 
 // Log detailed information about the video
 console.log(details); // Detailed video object with properties like title, duration, image, videoType, views, files
+```
+
+### Download [Video Details](https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa)
+```javascript
+// Download video thumbnail from a specific video using its URL
+const image = await xvideos.downloadImage('https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa');
+// Download video in high quality from a specific video using its URL
+const high = await xvideos.downloadHigh('https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa');
+// Download video in low quality from a specific video using its URL
+const low = await xvideos.downloadLow('https://www.xvideos.com/video.udefpih987f/mi_madrastra_perdio_apuesta_en_final_argentina_vs_colombia_y_me_lo_chupa');
+
+console.log(image, high, low); // path to downloaded image and videos
 ```
 
 ### Filter [Videos](https://www.xvideos.com/?k=threesome)
 
 ```javascript
 // Search for videos using a keyword, and optionally specify a page number
-const videos = await xvideos.videos.search('threesome', 5);
+const videos = await xvideos.search('threesome', 5);
 // Example with a specific page number
 // const videos = await xvideos.videos.search({ k: 'public', page: 5 });
 
